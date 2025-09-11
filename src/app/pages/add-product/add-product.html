@@ -1,0 +1,57 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-dark text-white text-center">
+          <h3 class="mb-0">➕ Add New Product</h3>
+        </div>
+        <div class="card-body p-4">
+          <form (ngSubmit)="onSubmit()" #productForm="ngForm">
+            
+            <!-- Name -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Product Name</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                [(ngModel)]="name" 
+                name="name" 
+                placeholder="Enter product name"
+                required />
+            </div>
+
+            <!-- Price -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Price</label>
+              <input 
+                type="number" 
+                class="form-control" 
+                [(ngModel)]="price" 
+                name="price" 
+                placeholder="Enter price"
+                required />
+            </div>
+
+            <!-- Image -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Product Image</label>
+              <input 
+                type="file" 
+                class="form-control" 
+                (change)="onFileSelected($event)" 
+                accept="image/*"
+                required />
+            </div>
+
+            <!-- Submit -->
+            <button 
+              type="submit" 
+              class="btn btn-success w-100 fw-semibold">
+              Save Product
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

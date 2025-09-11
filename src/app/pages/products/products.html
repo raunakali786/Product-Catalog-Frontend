@@ -1,0 +1,28 @@
+<h2 class="title">📦 My Product Catalog</h2>
+
+
+
+<div class="d-flex justify-content-end mb-3">
+  <a routerLink="/add-product" class="btn btn-primary">
+    ➕ Add Product
+  </a>
+
+</div>
+
+
+<div class="products-container">
+  <div class="product-card" *ngFor="let p of products">
+    <img [src]="p.imageUrl" alt="{{ p.name }}" class="product-image" />
+
+    <div class="product-info">
+      <h3>{{ p.name }}</h3>
+      <p class="price">${{ p.price | number:'1.0-0' }}</p>
+    </div>
+    
+
+    <div class="product-actions">
+  <a class="edit-btn btn btn-warning" [routerLink]="['/edit-product', p.id]">✏️ Edit</a>
+  <button class="delete-btn" (click)="onDelete(p.id)">🗑️ Delete</button>
+    </div>
+  </div>
+</div>

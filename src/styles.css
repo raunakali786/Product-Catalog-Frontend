@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.navbar-brand {
+  font-size: 1.3rem;
+}
+
+footer h5 {
+  font-weight: 600;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
