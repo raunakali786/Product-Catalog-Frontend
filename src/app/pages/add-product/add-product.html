@@ -6,8 +6,8 @@
           <h3 class="mb-0">➕ Add New Product</h3>
         </div>
         <div class="card-body p-4">
-          <form (ngSubmit)="onSubmit()" #productForm="ngForm">
-            
+          <form (ngSubmit)="onSubmit()" #productForm="ngForm" novalidate>
+
             <!-- Name -->
             <div class="mb-3">
               <label class="form-label fw-semibold">Product Name</label>
@@ -17,7 +17,15 @@
                 [(ngModel)]="name" 
                 name="name" 
                 placeholder="Enter product name"
-                required />
+                required
+                pattern="^[A-Za-z].*"
+                #nameCtrl="ngModel"
+              />
+              <!-- Validation messages -->
+              <div *ngIf="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched)" class="text-danger mt-1">
+                <div *ngIf="nameCtrl.errors?.['required']">Name is required.</div>
+                <div *ngIf="nameCtrl.errors?.['pattern']">Name must start with a letter.</div>
+              </div>
             </div>
 
             <!-- Price -->
@@ -29,7 +37,15 @@
                 [(ngModel)]="price" 
                 name="price" 
                 placeholder="Enter price"
-                required />
+                required
+                min="0.01"
+                #priceCtrl="ngModel"
+              />
+              <!-- Validation messages -->
+              <div *ngIf="priceCtrl.invalid && (priceCtrl.dirty || priceCtrl.touched)" class="text-danger mt-1">
+                <div *ngIf="priceCtrl.errors?.['required']">Price is required.</div>
+                <div *ngIf="priceCtrl.errors?.['min']">Price must be greater than zero.</div>
+              </div>
             </div>
 
             <!-- Image -->
@@ -46,7 +62,8 @@
             <!-- Submit -->
             <button 
               type="submit" 
-              class="btn btn-success w-100 fw-semibold">
+              class="btn btn-success w-100 fw-semibold"
+              [disabled]="productForm.invalid">
               Save Product
             </button>
           </form>
